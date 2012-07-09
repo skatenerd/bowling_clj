@@ -20,9 +20,12 @@
     (>= (count (flatten (:frames game-state))) 2)
     (= 10 (last (pop (vec (flatten (:frames game-state))))))))
 
+(defn omnom [belly food]
+  (update-state belly food))
+
 (defn score-game [rolls] 
   (let [initial-state {:score 0 :rolls []}]
-    (:score (reduce update-state initial-state rolls))))
+    (:score (reduce omnom initial-state rolls))))
 
 (defn update-state [game-state roll]
   (let [old-frames (:frames game-state)
