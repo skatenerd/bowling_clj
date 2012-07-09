@@ -4,7 +4,7 @@
 
 (def max-frames 10)
 
-(defn safe-conj [a b]
+(defn safe-append [a b]
   (conj (vec a) b))
 
 (defn last-frame-spare [game-state]
@@ -72,8 +72,8 @@
 
 (defn get-new-frames [old-frames roll]
   (if (add-new-frame? old-frames)
-    (safe-conj old-frames [roll])
-    (safe-conj (pop old-frames) (safe-conj (last old-frames) roll))))
+    (safe-append old-frames [roll])
+    (safe-append (pop old-frames) (safe-append (last old-frames) roll))))
 
 (defn add-new-frame? [old-frames]
   (or
